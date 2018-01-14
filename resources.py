@@ -18,8 +18,6 @@ class CreateUser(Resource):
     parser = reqparse.RequestParser()
     parser.add_argument("username", type=str, required=True,
                         help="This field is required")
-    parser.add_argument("password", type=str, required=True,
-                        help="This field is required")
 
     def post(self):
         data = self.parser.parse_args()
