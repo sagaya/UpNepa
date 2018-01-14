@@ -39,12 +39,15 @@ class UpdateUser(Resource):
         req_id = ObjectId(current_user['_id']['$oid'])
         user = User.objects(id=req_id).first()
         if user is not None:
-            if data["state"] is True:
-                bot.sendMessage(user.chatId, "UP NEPA!")
-                return {"status": True}
+            if user.chatId is not None:
+                if data["state"] is True:
+                    bot.sendMessage(user.chatId, "UP NEPA!")
+                    return {"status": True}
+                else:
+                    bot.sendMessage(user.chatId, "Dem don carry am!!")
+                    return {"status": True}
             else:
-                bot.sendMessage(user.chatId, "Dem don carry am!!")
-                return {"status": True}
+                return {"status": False, "message": "Invalid User"}
 
         else:
             return {"status": False,"message": "Invalid User"}

@@ -25,7 +25,7 @@ class User(Document):
         try:
             new_user.save()
         except Exception as e:
-            return {"status": False}
+            return {"status": False}, 400
         else:
             json_object = json.loads(new_user.to_json())
             return {"status": True, "user": json_object, 'token': 'Bearer {}'.format(create_access_token(identity=json_object))}
