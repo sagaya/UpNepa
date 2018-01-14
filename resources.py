@@ -42,7 +42,7 @@ class UpdateUser(Resource):
         if user is not None:
             if user.chatId is not None:
                 if data["state"] is True:
-                    time = datetime.datetime.now().strftime("%b %d, %-M:%H %p")
+                    time = datetime.datetime.now().strftime("%b %d, %m:%H %p")
                     bot.sendMessage(
                         user.chatId, "Them don bring light!. The time wey them bring am na {}".format(time))
                     return {"status": True}
