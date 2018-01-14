@@ -40,10 +40,11 @@ class UpdateUser(Resource):
         req_id = ObjectId(current_user['_id']['$oid'])
         user = User.objects(id=req_id).first()
         if user is not None:
+            
             if user.chatId is not None:
+                date_obj = datetime.datetime.now()
+                time = date_obj.strftime("%A, %d %b %Y %l:%M %p")
                 if data["state"] is True:
-                    date_obj = datetime.datetime.now()
-                    time = date_obj.strftime("%A, %d %b %Y %l:%M %p")
                     bot.sendMessage(
                         user.chatId, "Them don bring light!. The time wey them bring am na {}".format(time))
                     return {"status": True}
