@@ -49,7 +49,7 @@ class UpdateUser(Resource):
                         user.chatId, "Them don bring light!. The time wey them bring am na {}".format(time))
                     return {"status": True}
                 else:
-                    bot.sendMessage(user.chatId, "Them don bring light!. The time wey them bring am na {}".format(time))
+                    bot.sendMessage(user.chatId, "Them don carry light o!. The time wey them carry am na {}".format(time))
                     return {"status": True}
             else:
                 return {"status": False, "message": "Invalid User"}
