@@ -16,11 +16,13 @@ connect('upnepa', host=Base.DB)
 app.config.from_object(Base)
 jwt = JWTManager(app)
 
-
+@app.route("/")
+def inde():
+    return render_template('index.html')
 
 api.add_resource(CreateUser, "/register")
 api.add_resource(UpdateUser, "/send")
-api.add_resource(Index, "/")
+# api.add_resource(Index, "/")
 
 
 #BOT STUFF STARTS HERE!

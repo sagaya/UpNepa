@@ -1,6 +1,6 @@
 from flask_restful import *
 from flask_restful import reqparse
-from model.user import User
+from models.user import User
 from flask_jwt_extended import jwt_required, get_jwt_identity
 from bson import ObjectId
 import telepot

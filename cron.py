@@ -1,7 +1,7 @@
 from apscheduler.schedulers.background import BackgroundScheduler
 import telepot
 import json
-from model.user import User
+from models.user import User
 bot = telepot.Bot('518239357:AAGE-1BR1cGhgVLJwLhF8uIsl8EC7QYjUvg')
 
 offset = None
