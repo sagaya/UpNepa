@@ -5,6 +5,7 @@ from flask_jwt_extended import jwt_required, get_jwt_identity
 from bson import ObjectId
 import telepot
 import json
+import datetime
 
 bot = telepot.Bot('518239357:AAGE-1BR1cGhgVLJwLhF8uIsl8EC7QYjUvg')
 
@@ -41,10 +42,12 @@ class UpdateUser(Resource):
         if user is not None:
             if user.chatId is not None:
                 if data["state"] is True:
-                    bot.sendMessage(user.chatId, "UP NEPA!")
+                    time = datetime.datetime.now().strftime("%b %d, %-M:%H %p")
+                    bot.sendMessage(
+                        user.chatId, "Them don bring light!. The time wey them bring am na {}".format(time))
                     return {"status": True}
                 else:
-                    bot.sendMessage(user.chatId, "Dem don carry am!!")
+                    bot.sendMessage(user.chatId, "Them don bring light!. The time wey them bring am na {}".format(time))
                     return {"status": True}
             else:
                 return {"status": False, "message": "Invalid User"}
