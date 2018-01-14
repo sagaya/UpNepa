@@ -5,6 +5,7 @@ import json
 
 class User(Document):
     username = StringField(required=True)
+    password = StringField()
     chatId = IntField()
 
     @classmethod
