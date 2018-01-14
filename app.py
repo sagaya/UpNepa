@@ -12,7 +12,7 @@ from cron import *
 app = Flask(__name__)
 api = Api(app=app)
 
-connect('upnepa')
+connect('upnepa', host=Base.DB)
 app.config.from_object(Base)
 jwt = JWTManager(app)
 
