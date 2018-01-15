@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request, json
 from flask_restful import *
 from mongoengine import *
 from flask_cors import CORS
@@ -20,9 +20,19 @@ jwt = JWTManager(app)
 def inde():
     return render_template('index.html')
 
+
+@app.route('/process', methods=['POST'])
+def signUp():
+    _email = request.form['email']
+    if  _email:
+        return json.dumps({'html': '<span>All fields good !!</span>'})
+    else:
+        return json.dumps({'html': '<span>Enter the required fields</span>'})
+
+
 api.add_resource(CreateUser, "/register")
 api.add_resource(UpdateUser, "/send")
-# api.add_resource(Index, "/")
+
 
 
 #BOT STUFF STARTS HERE!

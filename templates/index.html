@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>UpNepa Bot</title>
-    
+    <script src="../static/jquery-3.2.1.min.js"></script>
     <style>
         body{
             background: #232526; /* fallback for old browsers */
@@ -25,7 +25,7 @@
             width: 230px;
             background: rgba(0, 0, 0, 0.3);
             color: white;
-            padding-left: 10px
+            padding-left: 1px
         }
         .btn{
             background: #51DF55;
@@ -40,10 +40,27 @@
 </head>
 <body >
     <div class="container">
-        <form action="">
-            <input type="text" class="email" placeholder="Email Address">
-            <button class="btn" type="submit">Get Started</button>
+        <form action="process" method="post">
+            <input name="email" type="text" class="email" placeholder="Email Address">
+            <button id="btnSignUp" class="btn">Get Started</button>
         </form>
     </div>
+    <script>
+        $(function () {
+                $('#btnSignUp').click(function () {
+                    $.ajax({
+                        url: '/signUp',
+                        data: $('form').serialize(),
+                        type: 'POST',
+                        success: function (response) {
+                            console.log(response);
+                        },
+                        error: function (error) {
+                            console.log(error);
+                        }
+                    });
+                });
+            });
+    </script>
 </body>
 </html>
