@@ -13,9 +13,9 @@ def new_stuff():
     content = json.dumps(bot.getUpdates())
     jsonObjects = json.loads(content)
     updates = [int(x["update_id"]) for x in jsonObjects]
-    offset = max(updates, default=0) 
+    offset = max(updates, default=0) + 1
     for jsonObject in jsonObjects:
-        if offset != jsonObject["update_id"]:
+        if offset - 1 != jsonObject["update_id"]:
             print("Offset is {}".format(offset))
             print("Udate is {}".format(jsonObject["update_id"]))
             if jsonObject:
