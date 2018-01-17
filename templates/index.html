@@ -25,7 +25,7 @@
             width: 230px;
             background: rgba(0, 0, 0, 0.3);
             color: white;
-            padding-left: 1px
+            padding-left: 15px
         }
         .btn{
             background: #51DF55;
@@ -41,10 +41,9 @@
 <body >
     <div class="container">
         <form action="{{ url_for('index') }}" method="post">
-             {{ form.csrf_token }}
-              {{form.email.label}} 
-              {{form.email}}
-              <input type="submit">
+            {{ form.csrf_token }}
+              {{form.email(placeholder='Email',class='email') }}
+            <input type="submit" id="btnSignUp" class="btn">
         </form>
     </div>
 </body>
