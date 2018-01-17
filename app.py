@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, json
+from flask import Flask, render_template, request, json,redirect,url_for
 from flask_restful import *
 from mongoengine import *
 from flask_cors import CORS
@@ -32,6 +32,8 @@ mail = Mail(app)
 api.add_resource(CreateUser, "/register")
 api.add_resource(UpdateUser, "/send")
 
+
+@app.route('/index')
 @app.route("/", methods=['GET', 'POST'])
 def index():
     form = EmailForm()
@@ -41,7 +43,7 @@ def index():
                       recipients=[form.email.data])
         msg.body = "New Email {}".format(form.email.data)
         mail.send(msg)
-        return '{}'.format(form.email.data)
+        return redirect(url_for('index', form=form))
     return render_template("index.html", form=form)
 
 if __name__ == '__main__':
