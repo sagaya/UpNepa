@@ -33,7 +33,6 @@ def new_stuff():
 
     #Check for new messages and assign the new stuff to the user
 
-
 sched = BackgroundScheduler()
 
 sched.add_job(new_stuff, 'interval', seconds=5)
