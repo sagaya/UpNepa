@@ -5,9 +5,13 @@ from flask_jwt_extended import jwt_required, get_jwt_identity
 from bson import ObjectId
 import telepot
 import json
+from flask import render_template
 import datetime
+from os import environ
+from flask_wtf import FlaskForm
+from wtforms import StringField
 
-bot = telepot.Bot('518239357:AAGE-1BR1cGhgVLJwLhF8uIsl8EC7QYjUvg')
+bot = telepot.Bot('{}'.format(environ.get("TOKEN")))
 
 class Index(Resource):
 
@@ -57,3 +61,6 @@ class UpdateUser(Resource):
         else:
             return {"status": False,"message": "Invalid User"}
         
+
+class EmailForm(FlaskForm):
+    email = StringField("email")

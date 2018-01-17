@@ -9,41 +9,40 @@ from config import Base
 from flask_jwt_extended import JWTManager
 from resources import *
 from cron import *
+from flask_mail import Mail, Message
+
 app = Flask(__name__)
 api = Api(app=app)
+app.config.from_object(Base)
+
 
 connect('upnepa', host=Base.DB)
-app.config.from_object(Base)
 jwt = JWTManager(app)
 
-@app.route("/")
-def inde():
-    return render_template('index.html')
+app.config['MAIL_SERVER'] = 'smtp.gmail.com'
+app.config['MAIL_PORT'] = 465
+app.config['MAIL_USERNAME'] = environ.get("EMAIL")
+app.config['MAIL_PASSWORD'] = environ.get("PASS")
+app.config['MAIL_USE_TLS'] = False
+app.config['MAIL_USE_SSL'] = True
+app.config['MAIL_DEBUG'] = True
 
-
-@app.route('/process', methods=['POST'])
-def signUp():
-    _email = request.form['email']
-    if  _email:
-        return json.dumps({'html': '<span>All fields good !!</span>'})
-    else:
-        return json.dumps({'html': '<span>Enter the required fields</span>'})
-
+mail = Mail(app)
 
 api.add_resource(CreateUser, "/register")
 api.add_resource(UpdateUser, "/send")
 
+@app.route("/", methods=['GET', 'POST'])
+def index():
+    form = EmailForm()
 
-
-#BOT STUFF STARTS HERE!
-
-
-
-TOKEN = "518239357:AAGE-1BR1cGhgVLJwLhF8uIsl8EC7QYjUvg"
-
-
-URL = "https://api.telegram.org/bot{}/".format(TOKEN)
-
+    if form.validate_on_submit():
+        msg = Message('Hello', sender='id@email.com',
+                      recipients=[form.email.data])
+        msg.body = "New Email {}".format(form.email.data)
+        mail.send(msg)
+        return '{}'.format(form.email.data)
+    return render_template("index.html", form=form)
 
 if __name__ == '__main__':
     app.run()

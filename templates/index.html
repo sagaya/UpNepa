@@ -40,27 +40,12 @@
 </head>
 <body >
     <div class="container">
-        <form action="process" method="post">
-            <input name="email" type="text" class="email" placeholder="Email Address">
-            <button id="btnSignUp" class="btn">Get Started</button>
+        <form action="{{ url_for('index') }}" method="post">
+             {{ form.csrf_token }}
+              {{form.email.label}} 
+              {{form.email}}
+              <input type="submit">
         </form>
     </div>
-    <script>
-        $(function () {
-                $('#btnSignUp').click(function () {
-                    $.ajax({
-                        url: '/signUp',
-                        data: $('form').serialize(),
-                        type: 'POST',
-                        success: function (response) {
-                            console.log(response);
-                        },
-                        error: function (error) {
-                            console.log(error);
-                        }
-                    });
-                });
-            });
-    </script>
 </body>
 </html>
