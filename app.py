@@ -8,7 +8,6 @@ import requests
 from config import Base
 from flask_jwt_extended import JWTManager
 from resources import *
-from cron import *
 from flask_mail import Mail, Message
 
 app = Flask(__name__)
