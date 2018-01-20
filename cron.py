@@ -5,7 +5,6 @@ import telepot
 from telepot.loop import MessageLoop
 import pprint
 
-bot = telepot.Bot('{}'.format(environ.get("TOKEN")))
 
 def handle(jsonObject):
     username = jsonObject["from"]["username"]
@@ -24,4 +23,9 @@ def handle(jsonObject):
     else:
         bot.sendMessage(jsonObject["from"]["id"], "Your username is not recognized please set a valid username!")
 
-MessageLoop(bot, handle).run_as_thread()
+
+bot = telepot.Bot('{}'.format(environ.get("TOKEN")))
+bot.setWebhook()
+bot.notifyOnMessage(handle)
+
+# MessageLoop(bot, handle).run_as_thread()
