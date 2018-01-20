@@ -9,10 +9,10 @@ from apscheduler.schedulers.background import BackgroundScheduler
 import telepot
 import json
 from models.user import User
-bot = telepot.Bot('{}'.format(environ.get("TOKEN")))
 from os import environ
 
 offset = None
+bot = telepot.Bot('{}'.format(environ.get("TOKEN")))
 
 
 def new_stuff():
