@@ -1,8 +1,16 @@
+from models.user import User
+offset = None
+import telepot
+from telepot.loop import MessageLoop
+import pprint
+import time
+
 from apscheduler.schedulers.background import BackgroundScheduler
 import telepot
 import json
 from models.user import User
 bot = telepot.Bot('{}'.format(environ.get("TOKEN")))
+from os import environ
 
 offset = None
 
