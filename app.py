@@ -53,6 +53,7 @@ offset = None
 import telepot
 from telepot.loop import MessageLoop
 import pprint
+import time
 
 
 def handle(jsonObject):
@@ -78,6 +79,8 @@ bot = telepot.Bot('{}'.format(environ.get("TOKEN")))
 bot.setWebhook()
 bot.message_loop(handle)
 
+while 1:
+    time.sleep(10)
 
 if __name__ == '__main__':
     bot.setWebhook()
