@@ -28,4 +28,3 @@ bot = telepot.Bot('{}'.format(environ.get("TOKEN")))
 bot.setWebhook()
 bot.message_loop(handle)
 
-# MessageLoop(bot, handle).run_as_thread()
