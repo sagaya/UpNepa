@@ -1,1 +1,1 @@
-web: gunicorn uwsgi.ini --log-file -
+web: gunicorn app:app --log-file -
