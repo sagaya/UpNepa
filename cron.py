@@ -28,7 +28,6 @@ def new_stuff():
             if jsonObject:
                 print(jsonObject)
                 username = jsonObject["message"]["from"]["username"]
-
                 user = User.objects(username=username).first()
                 if user:
                     user.chatId = jsonObject["message"]["from"]["id"]
@@ -36,13 +35,15 @@ def new_stuff():
                     if jsonObject["message"]["text"] == "/start":
                         bot.sendMessage(
                             jsonObject["message"]["from"]["id"], "Hi {}, Welcome to UpNepa. UpNepa is a bot that helps you keep track of PHCN power supply.".format(user.username))
+                        offset = jsonObject["update_id"] + 1
                         bot.sendMessage(
                             jsonObject["message"]["from"]["id"], "Congratulations {}! You can now receive notifications for power satus via telegram.".format(user.username))
+                        break
+                    bot.sendMessage(
+                        jsonObject["message"]["from"]["id"], "{} is an Invalid Command".format(jsonObject["message"]["text"]))
                 else:
                      bot.sendMessage(
                          jsonObject["message"]["from"]["id"], "Your username is not recognized please set a valid username!")
-
-    #Check for new messages and assign the new stuff to the user
 
 
 sched = BackgroundScheduler()
