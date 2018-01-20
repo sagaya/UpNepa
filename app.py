@@ -49,5 +49,5 @@ def index():
 port = int(environ.get('PORT', 33507))
 
 if __name__ == '__main__':
-    from cron import *
     app.run(port=port)
+    from cron import *
