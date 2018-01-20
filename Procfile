@@ -1,2 +1,3 @@
 web: gunicorn app:app --log-file -
-clock: gunicorn app:cron --log-file -
+clock: python cron.py --loglevel=INFO
+
