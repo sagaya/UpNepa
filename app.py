@@ -46,6 +46,7 @@ def index():
     return render_template("index.html", form=form)
 
 from cron import *
+port = int(environ.get('PORT', 33507))
 
 if __name__ == '__main__':
-    app.run()
+    app.run(port=port)
