@@ -27,5 +27,5 @@ def handle(jsonObject):
 
 
 bot = telepot.Bot('{}'.format(environ.get("TOKEN")))
-bot.message_loop(handle)
+MessageLoop(bot, handle).run_as_thread()
 # bot.setWebhook()
