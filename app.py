@@ -48,5 +48,4 @@ def index():
 from cron import *
 
 if __name__ == '__main__':
-    # bot.setWebhook()
     app.run()

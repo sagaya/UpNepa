@@ -1,5 +1,3 @@
-
-
 from models.user import User
 from os import environ
 offset = None
@@ -29,5 +27,5 @@ def handle(jsonObject):
 
 
 bot = telepot.Bot('{}'.format(environ.get("TOKEN")))
-bot.setWebhook()
-bot.message_loop(handle)
+bot.message_loop(source=handle)
+# bot.setWebhook()
