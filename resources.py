@@ -11,6 +11,9 @@ from os import environ
 from flask_wtf import FlaskForm
 from wtforms import StringField
 
+bot = telepot.Bot('{}'.format(environ.get("TOKEN")))
+
+
 class Index(Resource):
 
     def get(self):
