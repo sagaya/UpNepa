@@ -45,6 +45,7 @@ def index():
         return redirect(url_for('index', form=form))
     return render_template("index.html", form=form)
 
+from cron import *
 
 if __name__ == '__main__':
     # bot.setWebhook()
