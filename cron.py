@@ -28,8 +28,10 @@ def handle(jsonObject):
             if jsonObject["text"] == "/start":
                 bot.sendMessage(jsonObject["from"]["id"], "Hi {}, Welcome to UpNepa. UpNepa is a bot that helps you keep track of PHCN power supply.".format(user.username))
                 bot.sendMessage(jsonObject["from"]["id"], "Congratulations {}! You can now receive notifications for power satus via telegram.".format(user.username))
-            bot.sendMessage(jsonObject["from"]["id"], "{} is an Invalid Command".format(jsonObject["message"]["text"]))
-        bot.sendMessage(jsonObject["from"]["id"], "Your username is not recognized please set a valid username!")
+            else:
+                bot.sendMessage(jsonObject["from"]["id"], "{} is an Invalid Command".format(jsonObject["message"]["text"]))
+        else:
+            bot.sendMessage(jsonObject["from"]["id"], "Your username is not recognized please set a valid username!")
 
 bot = telepot.Bot('{}'.format(environ.get("TOKEN")))
 def fetch():
