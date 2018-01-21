@@ -4,7 +4,7 @@ import telepot
 from telepot.loop import MessageLoop
 import time
 
-from apscheduler.schedulers.background import BackgroundScheduler
+from apscheduler.schedulers.blocking import BlockingScheduler
 import telepot
 import json
 from models.user import User
@@ -68,7 +68,7 @@ def new_stuff():
                          jsonObject["message"]["from"]["id"], "Your username is not recognized please set a valid username!")
 
 
-sched = BackgroundScheduler()
+sched = BlockingScheduler()
 
 sched.add_job(new_stuff, 'interval', seconds=5)
 
