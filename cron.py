@@ -28,6 +28,7 @@ initial = False
 
 
 def new_stuff():
+    print("Howdy")
     global initial
     off = get_offset()
     offset = 0
