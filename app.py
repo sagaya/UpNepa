@@ -45,7 +45,7 @@ def index():
         return redirect(url_for('index', form=form))
     return render_template("index.html", form=form)
 
-from cron import *
+# from cron import *
 port = int(environ.get('PORT', 33507))
 
 if __name__ == '__main__':

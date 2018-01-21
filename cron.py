@@ -12,38 +12,27 @@ from os import environ
 
 bot = telepot.Bot('{}'.format(environ.get("TOKEN")))
 
+def fh():
+    print("howdy")
+    bot.setWebhook()
+    MessageLoop(bot, handle).run_forever()
+    print('Listening ...')
 
-def handle(msg):
-    content_type, chat_type, chat_id = telepot.glance(msg)
+
+def handle(jsonObject):
+    content_type, chat_type, chat_id = telepot.glance(jsonObject)
     print(content_type, chat_type, chat_id)
     if content_type == 'text':
-        bot.sendMessage(chat_id, msg['text'])
+        username = jsonObject["from"]["username"]
+        user = User.objects(username=username).first()
+        if user:
+            user.chatId = jsonObject["from"]["id"]
+            user.save()
+            if jsonObject["text"] == "/start":
+                bot.sendMessage(jsonObject["from"]["id"], "Hi {}, Welcome to UpNepa. UpNepa is a bot that helps you keep track of PHCN power supply.".format(user.username))
+                bot.sendMessage(jsonObject["from"]["id"], "Congratulations {}! You can now receive notifications for power satus via telegram.".format(user.username))
 
-
-bot.setWebhook()
-MessageLoop(bot, handle).run_as_thread()
-print('Listening ...')
-
-# Keep the program running.
-while 1:
-    time.sleep(2)
-
-
-
-
-# def get_offset():
-#     global initial
-#     content = json.dumps(bot.getUpdates())
-#     jsonObjects = json.loads(content)
-#     print(jsonObjects)
-#     updates = [int(x["update_id"]) for x in jsonObjects]
-#     offset = max(updates, default=0) 
-#     if offset != 0:
-#         initial = False
-#     return offset
-
-
-# initial = False
+        # bot.sendMessage(chat_id, msg['text'])
 
 
 # def new_stuff():
@@ -87,8 +76,8 @@ while 1:
 
 
 
-# sched = BackgroundScheduler()
+sched = BackgroundScheduler()
 
-# sched.add_job(new_stuff, 'interval', seconds=5)
+sched.add_job(fh, 'interval', seconds=5)
 
-# sched.start()
+sched.start()
