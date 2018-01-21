@@ -39,9 +39,11 @@ def new_stuff():
                         bot.sendMessage(
                             jsonObject["message"]["from"]["id"], "Congratulations {}! You can now receive notifications for power satus via telegram.".format(user.username))
                         break
+                    offset = jsonObject["update_id"] + 1
                     bot.sendMessage(
                         jsonObject["message"]["from"]["id"], "{} is an Invalid Command".format(jsonObject["message"]["text"]))
                 else:
+                    offset = jsonObject["update_id"] + 1
                      bot.sendMessage(
                          jsonObject["message"]["from"]["id"], "Your username is not recognized please set a valid username!")
 
