@@ -33,11 +33,11 @@ def handle(jsonObject):
 bot = telepot.Bot('{}'.format(environ.get("TOKEN")))
 def fetch():
     print("Howdy")
-    MessageLoop(bot, handle).run_as_thread()
+    MessageLoop(bot, handle).run_forever()
     print('Listening ...')
 
 sched = BlockingScheduler()
 
-sched.add_job(fetch, 'interval', seconds=5)
+sched.add_job(fetch, 'interval', seconds=1)
 
 sched.start()
