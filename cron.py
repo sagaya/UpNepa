@@ -20,6 +20,7 @@ def handle(msg):
         bot.sendMessage(chat_id, msg['text'])
 
 
+bot.setWebhook()
 MessageLoop(bot, handle).run_as_thread()
 print('Listening ...')
 
