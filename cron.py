@@ -21,11 +21,11 @@ def handle(msg):
     if content_type == 'text':
         bot.sendMessage(chat_id, msg['text'])
 
-
 bot = telepot.Bot('{}'.format(environ.get("TOKEN")))
-
-MessageLoop(bot, handle).run_as_thread()
-print('Listening ...')
+def fg():
+    print("Howdy")
+    MessageLoop(bot, handle).run_as_thread()
+    print('Listening ...')
 
 # connect('upnepa', host=Base.DB)
 
@@ -85,8 +85,8 @@ print('Listening ...')
 #                          jsonObject["message"]["from"]["id"], "Your username is not recognized please set a valid username!")
 
 
-# sched = BlockingScheduler()
+sched = BlockingScheduler()
 
-# sched.add_job(new_stuff, 'interval', seconds=5)
+sched.add_job(fg, 'interval', seconds=5)
 
-# sched.start()
+sched.start()
