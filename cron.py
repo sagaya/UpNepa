@@ -9,8 +9,11 @@ import telepot
 import json
 from models.user import User
 from os import environ
+from mongoengine import *
+from config import Base
 
 bot = telepot.Bot('{}'.format(environ.get("TOKEN")))
+connect('upnepa', host=Base.DB)
 
 def get_offset():
     global initial
