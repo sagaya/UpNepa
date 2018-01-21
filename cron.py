@@ -15,7 +15,7 @@ bot = telepot.Bot('{}'.format(environ.get("TOKEN")))
 def fh():
     print("howdy")
     bot.setWebhook()
-    MessageLoop(bot, handle).run_forever()
+    MessageLoop(bot, handle).run_as_thread()
     print('Listening ...')
 
 
