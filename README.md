@@ -18,3 +18,8 @@ Please exchange the TOKEN, the webhook URL, and the HOOK path with your own.
 * If you have virtualenv installed activate (venv)
 * Run `pip install -r requirements.txt`
 * Run `python app.py` and you are good to go
+
+# Enviroment Variables
+
+* `DB` Your mongodb host url if you are using it locally set it as `local`
+* `TOKEN` Telegram bot token holla [BotFather](https://core.telegram.org/bots#3-how-do-i-create-a-bot) to get one 
