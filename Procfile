@@ -1,2 +1,2 @@
-web: gunicorn -b "0.0.0.0:$PORT" app:app --log-file -
-worker: python cron.py 
+web: gunicorn app:app --log-file -
+clock: python cron.py --loglevel=INFO
