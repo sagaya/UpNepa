@@ -45,6 +45,11 @@ def index():
         return redirect(url_for('index', form=form))
     return render_template("index.html", form=form)
 
+
+@app.route('/wakemydyno.txt')
+def heroku_idle():
+    return app.send_static_file('wakemydyno.txt')
+
 # from cron import *
 port = int(environ.get('PORT', 33507))
 
