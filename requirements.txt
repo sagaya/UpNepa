@@ -37,7 +37,7 @@ teleflask==1.0.0
 telepot==12.5
 tzlocal==1.5.1
 urllib3==1.22
-Werkzeug==0.14.1
+Werkzeug==0.15.3
 yarl==0.18.0
 flask_wtf
 flask_mail
